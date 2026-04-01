@@ -1,4 +1,6 @@
-This project is an AI-powered tool that helps users generate tweets and estimate how much engagement they might get. You simply enter details like company name and message, and the system creates a tweet and predicts the number of likes using a trained machine learning model.
+This project is an AI-powered tool that helps users generate tweets and estimate how much engagement they might get. You enter details like company name and message, and the system creates a tweet and predicts the number of likes using a trained machine learning model.
+
+The tweet generation is not AI-based — it uses randomized templates to create structured and varied tweets. The engagement prediction, however, is powered by a machine learning model.
 
 The project combines multiple parts:
 
