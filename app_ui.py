@@ -8,9 +8,7 @@ st.set_page_config(page_title="AI Marketing Tool", layout="centered")
 st.title("🚀 AI Content + Engagement Predictor")
 st.write("Generate a tweet and predict its engagement!")
 
-# ===============================
-# 🔹 USER INPUTS
-# ===============================
+#inputs
 company = st.text_input("Company Name", "Nike")
 
 tweet_type = st.selectbox(
@@ -24,15 +22,10 @@ topic = st.text_input("Topic", "fitness")
 has_media = st.checkbox("Include Media?", value=False)
 hour = st.slider("Posting Hour (0–23)", 12, 0, 23)
 
-# ===============================
-# 🔹 BUTTON ACTION
-# ===============================
+#action
 if st.button("🚀 Generate & Predict"):
 
     try:
-        # ===============================
-        # 🔹 CALL GENERATE API
-        # ===============================
         gen_res = requests.post(
             "http://127.0.0.1:5001/generate",
             json={
@@ -48,9 +41,6 @@ if st.button("🚀 Generate & Predict"):
         st.subheader("📝 Generated Tweet")
         st.success(tweet)
 
-        # ===============================
-        # 🔹 FEATURE EXTRACTION
-        # ===============================
         word_count = len(tweet.split())
         char_count = len(tweet)
         sentiment = TextBlob(tweet).sentiment.polarity
@@ -60,17 +50,13 @@ if st.button("🚀 Generate & Predict"):
 
         avg_word_length = char_count / (word_count + 1)
 
-        # 🔥 NEW REQUIRED FEATURES
         day_of_week = datetime.datetime.now().weekday()
 
         emoji_count = sum(1 for c in tweet if c in "😀😂😍🔥🎉🚀")
 
-        # ⚠️ placeholder (can improve later)
         company_post_count = 50
 
-        # ===============================
-        # 🔹 CALL PREDICT API
-        # ===============================
+        #predict api call
         pred_res = requests.post(
             "http://127.0.0.1:5000/predict",
             json={
@@ -89,9 +75,7 @@ if st.button("🚀 Generate & Predict"):
             }
         ).json()
 
-        # ===============================
-        # 🔹 DISPLAY RESULT
-        # ===============================
+        #output
         st.subheader("📊 Predicted Likes")
         st.metric(label="Estimated Likes", value=pred_res["predicted_likes"])
 
