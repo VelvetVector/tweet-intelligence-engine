@@ -9,4 +9,4 @@ like_predictor.pkl is the trained model for predicting likes
 company_encoder.pkl and global_avg.pkl help the model understand company popularity
 app.py brings everything together into an interactive Streamlit app
 
-In simple terms, it takes an idea → turns it into a tweet → and tells you how well it might perform.
+In simple terms, it takes an idea → turns it into a tweet → and tells you how well it might perform. 
