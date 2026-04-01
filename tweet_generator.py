@@ -1,9 +1,8 @@
-# tweet_generator.py
 import random
 
 class SimpleTweetGenerator:
     def __init__(self):
-        # Simple templates - you can add more!
+
         self.templates = {
             'announcement': [
                 "🚀 Exciting news from {company}! {message}",
@@ -34,7 +33,6 @@ class SimpleTweetGenerator:
             topic=topic
         )
         
-        # Make sure it's not too long (Twitter limit is 280 characters)
         if len(tweet) > 280:
             tweet = tweet[:277] + "..."
         
