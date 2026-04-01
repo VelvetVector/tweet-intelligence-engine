@@ -5,9 +5,9 @@ from textblob import TextBlob
 import datetime
 from tweet_generator import SimpleTweetGenerator
 
-# ===============================
-# 🔹 Load model + encoder
-# ===============================
+
+#load model
+
 @st.cache_resource
 def load_model():
     return joblib.load("like_predictor.pkl")
@@ -29,9 +29,7 @@ company_encoder = load_encoder()
 global_avg = load_global_avg()
 generator = load_generator()
 
-# ===============================
-# 🔹 UI
-# ===============================
+#ui
 st.title("🚀 Tweet Intelligence Engine")
 st.write("Generate tweets and predict engagement!")
 
@@ -47,20 +45,16 @@ message = st.text_input("Message", "launching new running shoes")
 has_media = st.checkbox("Include Media?", value=False)
 hour = st.slider("Posting Hour", 0, 23, 12)
 
-# ===============================
-# 🔹 BUTTON
-# ===============================
+#button
 if st.button("🚀 Generate & Predict"):
 
-    # 🔹 Generate tweet
+
     tweet = generator.generate_tweet(company, tweet_type, message)
 
     st.subheader("📝 Generated Tweet")
     st.success(tweet)
 
-    # ===============================
-    # 🔹 Feature Engineering
-    # ===============================
+
     word_count = len(tweet.split())
     char_count = len(tweet)
     sentiment = TextBlob(tweet).sentiment.polarity
@@ -78,9 +72,7 @@ if st.button("🚀 Generate & Predict"):
 
     company_target_enc = company_encoder.get(company, global_avg)
 
-    # ===============================
-    # 🔹 Prediction
-    # ===============================
+#prediction
     features = np.array([[
         word_count,
         char_count,
@@ -99,8 +91,6 @@ if st.button("🚀 Generate & Predict"):
     pred = model.predict(features)[0]
     predicted_likes = int(np.expm1(pred))
 
-    # ===============================
-    # 🔹 Output
-    # ===============================
+#output
     st.subheader("📊 Predicted Likes")
     st.metric("Estimated Likes", predicted_likes)
