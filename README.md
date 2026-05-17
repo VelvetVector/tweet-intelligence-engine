@@ -10,3 +10,4 @@ company_encoder.pkl and global_avg.pkl help the model understand company popular
 app.py brings everything together into an interactive Streamlit app
 
 In simple terms, it takes an idea → turns it into a tweet → and tells you how well it might perform. 
+Try it out here: https://tweet-intelligence-engine-mptdjbosqtnvlhjjr8kvqy.streamlit.app/
